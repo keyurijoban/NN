@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Neural Networks</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Neural Networks">
+  <meta name="author" content="Gunnvant Singh">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/quiz/css/demo.css"></link>
+<link rel=stylesheet href="libraries/widgets/bootstrap/css/bootstrap.css"></link>
+<link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Neural Networks</h1>
+    <h2>Getting Started</h2>
+    <p>Gunnvant Singh<br/>SME</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Agenda</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li><p>Neural Networks</p>
+
+<ul>
+<li>Uses</li>
+<li>Basic concepts: Perceptron, activations, loss functions</li>
+<li>Multilayer perceptron</li>
+<li>Gradient Descent and Back propagation</li>
+<li>Convolutional Neural Networks</li>
+<li>Transfer learning in CNN</li>
+</ul></li>
+<li><p>Keras</p>
+
+<ul>
+<li>Basic API</li>
+<li>MLP implementation</li>
+<li>CNN implementation</li>
+</ul></li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Neural Networks : Uses</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Typical use case for Neural Networks is in the field of computer vision and NLP</li>
+<li>Traditional methods and analysis are not going to be replaced by neural networks</li>
+<li>This session will introduce Multi Layer Perceptron Model in the classification setting, aim: to make you self explorers.</li>
+<li>Current state of the art in Neural Networks: Convolutional Neural Networks, Recurrent Neural Networks</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Basic Concepts</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Central Concepts:
+
+<ul>
+<li>Layers: Input, Hidden and Output</li>
+<li>Activations</li>
+<li>Cost functions</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Basic Concepts</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Layers: Input, Hidden and Output</li>
+</ul>
+
+<p><img src='mlp1.png'></p>
+
+<p><footer style='size:0.1px;' > <a href="http://neuralnetworksanddeeplearning.com/">http://neuralnetworksanddeeplearning.com/</a></footer></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Basic Concepts</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Activation functions and Cost Functions</li>
+</ul>
+
+<p><img src = 'mlp2.png'></p>
+
+<ul>
+<li>For example : Excel Demo</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Gradient Descent: Optimising a convex function</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><p>We have seen that there is always a cost function, to minimise cost, Gradient Descent and its variations are used.</p></li>
+<li><p>The primary identity is:</p>
+
+<p>\[w^{t+1}=w^{t}-\eta \nabla C(w)\] </p></li>
+<li><p>Here \(w^{t+1}, w^{t}\) are model parameter vectors, \(C(w)\) is the cost function and \(\nabla\) is the gradient</p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Gradient Descent: Optimising a convex function</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>This is a simplistic representation:</li>
+</ul>
+
+<p><img src= 'gd.png'></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Backpropagation:</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Different weight vectors in different layers</li>
+</ul>
+
+<p><img src='backprop.gif'></p>
+
+<ul>
+<li>A more involved (one of the best discussions I could find) can be accessed from here <a href="http://neuralnetworksanddeeplearning.com/chap2.html">http://neuralnetworksanddeeplearning.com/chap2.html</a></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Convolutional Neural Networks</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><p>Flattening an image and using it as an input has some disadvantages:</p>
+
+<ul>
+<li>There is information in spatial arrangement, flattening might distroy that</li>
+<li>The number of weights to be estimated will increase if neural networks with many layers and moderate resolution is used. (224*224 pixels and RGB channels)</li>
+</ul></li>
+<li><p>CNN reduce the number of weights to be estimated and also preserve the spatial information</p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Convolutional Neural  Networks</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>What is convolution?</li>
+</ul>
+
+<p><img src='conv1.gif'></p>
+
+<ul>
+<li>Kernel</li>
+</ul>
+
+<p><img src='kernel.png'></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Convolutional Neural Networks</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Related terms: Padding</li>
+</ul>
+
+<p><img src='conv2.gif'></p>
+
+<ul>
+<li>A couple of factors affect the ouput size of output from a convolving kernel:
+
+<ul>
+<li>Zero padding</li>
+<li>Kernel Size</li>
+<li>Strides</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Convolutional Neural Networks</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Effect of no padding, unit strides:</li>
+</ul>
+
+<p><img src='conv3.gif'></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Convolutional Neural Networks</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Double padding, unit strides:</li>
+</ul>
+
+<p><img src='conv4.gif'></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Convolutional Neural Networks</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Same size output is also possible (is desirable)</li>
+</ul>
+
+<p><img src='conv5.gif'></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Convolutional Neural Networks</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Neural Network with convolutional layers</li>
+</ul>
+
+<p><img src='depthcol.jpeg'></p>
+
+<ul>
+<li>Assume there is a 5 by 5 kernel with a bias term and there are 11 such kernels in this layer, the how many parameters will be needed? Compare with a vaniall MLP?</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Convolutional Neural Networks</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>CNNs not only have convolutional layers, they also have pooling layers, that reduce the size of image</li>
+</ul>
+
+<p><img src='pool.jpeg'></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Convolutional Neural Networks</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>This is how pooling layer works:</li>
+</ul>
+
+<p><img src='maxpool.jpeg'></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Convolutional Neural Networks</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Sample complete CNN architecture (LeNet5)</li>
+</ul>
+
+<p><img src='lenet5.png'></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Agenda'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Neural Networks : Uses'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Basic Concepts'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Basic Concepts'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Basic Concepts'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Gradient Descent: Optimising a convex function'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Gradient Descent: Optimising a convex function'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Backpropagation:'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='Convolutional Neural Networks'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='Convolutional Neural  Networks'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='Convolutional Neural Networks'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Convolutional Neural Networks'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='Convolutional Neural Networks'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Convolutional Neural Networks'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Convolutional Neural Networks'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Convolutional Neural Networks'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='Convolutional Neural Networks'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='Convolutional Neural Networks'>
+         18
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  <script src="libraries/widgets/quiz/js/jquery.quiz.js"></script>
+<script src="libraries/widgets/quiz/js/mustache.min.js"></script>
+<script src="libraries/widgets/quiz/js/quiz-app.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootstrap.min.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootbox.min.js"></script>
+
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<script>  
+  $(function (){ 
+    $("#example").popover(); 
+    $("[rel='tooltip']").tooltip(); 
+  });  
+  </script>  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
