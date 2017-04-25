@@ -177,7 +177,7 @@ knit        : slidify::knit2slides
 
 <img src='depthcol.jpeg'>
 
-* Assume there is a 5 by 5 kernel with a bias term and there are 11 such kernels in this layer, the how many parameters will be needed? Compare with a vaniall MLP?
+* Assume there is a 5 by 5 kernel with a bias term and there are 11 such kernels in this layer, the how many parameters will be needed? Compare with a vanilla MLP?
 
 
 --- .class #id
