@@ -2,7 +2,6 @@
 title       : Neural Networks
 subtitle    : Getting Started 
 author      : Gunnvant Singh
-job         : SME
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
 hitheme     : tomorrow      # 
@@ -74,12 +73,12 @@ knit        : slidify::knit2slides
 
 ## Gradient Descent: Optimising a convex function
 
-* We have seen that there is always a cost function, to minimise cost, Gradient Descent and its variations are used.
+* We have seen that there is always a cost function, to minimize cost, Gradient Descent and its variations are used.
 
 * The primary identity is:
  
- $$w^{t+1}=w^{t}-\eta \nabla C(w)$$ 
-* Here $w^{t+1}, w^{t}$ are model parameter vectors, $C(w)$ is the cost function and $\nabla$ is the gradient
+ $$w^{new}=w^{old}-\eta \nabla C(w)$$ 
+* Here $w^{new}, w^{old}$ are model parameter vectors, $C(w)$ is the cost function and $\nabla$ is the gradient
 
 
 --- .class #id
@@ -109,7 +108,7 @@ knit        : slidify::knit2slides
 ## Convolutional Neural Networks
 
 * Flattening an image and using it as an input has some disadvantages:
- * There is information in spatial arrangement, flattening might distroy that
+ * There is information in spatial arrangement, flattening might destroy that
  * The number of weights to be estimated will increase if neural networks with many layers and moderate resolution is used. (224*224 pixels and RGB channels)
 
 * CNN reduce the number of weights to be estimated and also preserve the spatial information
@@ -127,6 +126,9 @@ knit        : slidify::knit2slides
 
 <img src='kernel.png'>
 
+* Source: http://deeplearning.net/software/theano/tutorial/conv_arithmetic.html
+
+
 
 --- .class #id
 
@@ -136,11 +138,12 @@ knit        : slidify::knit2slides
 
 <img src='conv2.gif'>
 
-* A couple of factors affect the ouput size of output from a convolving kernel:
+* A couple of factors affect the output size of output from a convolving kernel:
  * Zero padding
  * Kernel Size
  * Strides
- 
+* Source: http://deeplearning.net/software/theano/tutorial/conv_arithmetic.html 
+
 
 --- .class #id
 
@@ -150,6 +153,7 @@ knit        : slidify::knit2slides
 
 <img src='conv3.gif'>
 
+* Source: http://deeplearning.net/software/theano/tutorial/conv_arithmetic.html
 
 
 --- .class #id
@@ -160,6 +164,7 @@ knit        : slidify::knit2slides
 <img src='conv4.gif'>
 
 
+
 --- .class #id
 
 ## Convolutional Neural Networks
@@ -168,6 +173,7 @@ knit        : slidify::knit2slides
 
 <img src='conv5.gif'>
 
+* Source: http://deeplearning.net/software/theano/tutorial/conv_arithmetic.html
 
 --- .class #id
 
@@ -179,6 +185,8 @@ knit        : slidify::knit2slides
 
 * Assume there is a 5 by 5 kernel with a bias term and there are 11 such kernels in this layer, the how many parameters will be needed? Compare with a vanilla MLP?
 
+* Source: http://cs231n.github.io/convolutional-networks/
+
 
 --- .class #id
 
@@ -188,6 +196,7 @@ knit        : slidify::knit2slides
 
 <img src='pool.jpeg'>
 
+* Source: http://cs231n.github.io/convolutional-networks/
 
 
 --- .class #id
@@ -196,6 +205,8 @@ knit        : slidify::knit2slides
 * This is how pooling layer works:
 
 <img src='maxpool.jpeg'>
+
+* Source: http://cs231n.github.io/convolutional-networks/
 
 
 --- .class #id
@@ -206,3 +217,23 @@ knit        : slidify::knit2slides
 
 <img src='lenet5.png'>
 
+
+--- .class #id
+
+## Convolutional Neural Networks
+
+* There are other popular architectures AlexNet, VGGNet, ResNet
+* Even after using convolving kernels, CNNs are resource intensive and require large amounts of images to train.
+* To tackle this issue, one can use a pre-trained model and fine tune it to specific classification tasks, this is called **Transfer Learning**
+
+
+--- .class #id
+
+## Convolutional Neural Networks: Transfer Learning
+ 
+* Here is a schematic:
+ 
+ <img src='transfer_learning.jpg'>
+
+
+--- .class #id

@@ -36,7 +36,7 @@
   <hgroup class="auto-fadein">
     <h1>Neural Networks</h1>
     <h2>Getting Started</h2>
-    <p>Gunnvant Singh<br/>SME</p>
+    <p>Gunnvant Singh<br/></p>
   </hgroup>
   <article></article>  
 </slide>
@@ -149,11 +149,11 @@
   </hgroup>
   <article data-timings="">
     <ul>
-<li><p>We have seen that there is always a cost function, to minimise cost, Gradient Descent and its variations are used.</p></li>
+<li><p>We have seen that there is always a cost function, to minimize cost, Gradient Descent and its variations are used.</p></li>
 <li><p>The primary identity is:</p>
 
-<p>\[w^{t+1}=w^{t}-\eta \nabla C(w)\] </p></li>
-<li><p>Here \(w^{t+1}, w^{t}\) are model parameter vectors, \(C(w)\) is the cost function and \(\nabla\) is the gradient</p></li>
+<p>\[w^{new}=w^{old}-\eta \nabla C(w)\] </p></li>
+<li><p>Here \(w^{new}, w^{old}\) are model parameter vectors, \(C(w)\) is the cost function and \(\nabla\) is the gradient</p></li>
 </ul>
 
   </article>
@@ -203,7 +203,7 @@
 <li><p>Flattening an image and using it as an input has some disadvantages:</p>
 
 <ul>
-<li>There is information in spatial arrangement, flattening might distroy that</li>
+<li>There is information in spatial arrangement, flattening might destroy that</li>
 <li>The number of weights to be estimated will increase if neural networks with many layers and moderate resolution is used. (224*224 pixels and RGB channels)</li>
 </ul></li>
 <li><p>CNN reduce the number of weights to be estimated and also preserve the spatial information</p></li>
@@ -230,6 +230,10 @@
 
 <p><img src='kernel.png'></p>
 
+<ul>
+<li>Source: <a href="http://deeplearning.net/software/theano/tutorial/conv_arithmetic.html">http://deeplearning.net/software/theano/tutorial/conv_arithmetic.html</a></li>
+</ul>
+
   </article>
   <!-- Presenter Notes -->
 </slide>
@@ -246,13 +250,14 @@
 <p><img src='conv2.gif'></p>
 
 <ul>
-<li>A couple of factors affect the ouput size of output from a convolving kernel:
+<li>A couple of factors affect the output size of output from a convolving kernel:
 
 <ul>
 <li>Zero padding</li>
 <li>Kernel Size</li>
 <li>Strides</li>
 </ul></li>
+<li>Source: <a href="http://deeplearning.net/software/theano/tutorial/conv_arithmetic.html">http://deeplearning.net/software/theano/tutorial/conv_arithmetic.html</a> </li>
 </ul>
 
   </article>
@@ -269,6 +274,10 @@
 </ul>
 
 <p><img src='conv3.gif'></p>
+
+<ul>
+<li>Source: <a href="http://deeplearning.net/software/theano/tutorial/conv_arithmetic.html">http://deeplearning.net/software/theano/tutorial/conv_arithmetic.html</a></li>
+</ul>
 
   </article>
   <!-- Presenter Notes -->
@@ -300,6 +309,10 @@
 
 <p><img src='conv5.gif'></p>
 
+<ul>
+<li>Source: <a href="http://deeplearning.net/software/theano/tutorial/conv_arithmetic.html">http://deeplearning.net/software/theano/tutorial/conv_arithmetic.html</a></li>
+</ul>
+
   </article>
   <!-- Presenter Notes -->
 </slide>
@@ -316,7 +329,8 @@
 <p><img src='depthcol.jpeg'></p>
 
 <ul>
-<li>Assume there is a 5 by 5 kernel with a bias term and there are 11 such kernels in this layer, the how many parameters will be needed? Compare with a vanilla MLP?</li>
+<li><p>Assume there is a 5 by 5 kernel with a bias term and there are 11 such kernels in this layer, the how many parameters will be needed? Compare with a vanilla MLP?</p></li>
+<li><p>Source: <a href="http://cs231n.github.io/convolutional-networks/">http://cs231n.github.io/convolutional-networks/</a></p></li>
 </ul>
 
   </article>
@@ -334,6 +348,10 @@
 
 <p><img src='pool.jpeg'></p>
 
+<ul>
+<li>Source: <a href="http://cs231n.github.io/convolutional-networks/">http://cs231n.github.io/convolutional-networks/</a></li>
+</ul>
+
   </article>
   <!-- Presenter Notes -->
 </slide>
@@ -348,6 +366,10 @@
 </ul>
 
 <p><img src='maxpool.jpeg'></p>
+
+<ul>
+<li>Source: <a href="http://cs231n.github.io/convolutional-networks/">http://cs231n.github.io/convolutional-networks/</a></li>
+</ul>
 
   </article>
   <!-- Presenter Notes -->
@@ -364,6 +386,43 @@
 
 <p><img src='lenet5.png'></p>
 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Convolutional Neural Networks</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>There are other popular architectures AlexNet, VGGNet, ResNet</li>
+<li>Even after using convolving kernels, CNNs are resource intensive and require large amounts of images to train.</li>
+<li>To tackle this issue, one can use a pre-trained model and fine tune it to specific classification tasks, this is called <strong>Transfer Learning</strong></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Convolutional Neural Networks: Transfer Learning</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><p>Here is a schematic:</p>
+
+<p><img src='transfer_learning.jpg'></p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <article data-timings="">
+    
   </article>
   <!-- Presenter Notes -->
 </slide>
@@ -478,6 +537,24 @@
       <a href="#" target="_self" rel='tooltip' 
         data-slide=18 title='Convolutional Neural Networks'>
          18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='Convolutional Neural Networks'>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='Convolutional Neural Networks: Transfer Learning'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='NA'>
+         21
       </a>
     </li>
   </ul>
