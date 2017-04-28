@@ -29,7 +29,7 @@ knit        : slidify::knit2slides
 
 ## Neural Networks : Uses
 
-* Typical use case for Neural Networks is in the field of computer vision and NLP
+* Typical current use case for Neural Networks is in the field of computer vision and NLP
 * Traditional methods and analysis are not going to be replaced by neural networks
 * This session will introduce Multi Layer Perceptron Model in the classification setting, aim: to make you self explorers.
 * Current state of the art in Neural Networks: Convolutional Neural Networks, Recurrent Neural Networks
@@ -167,6 +167,7 @@ knit        : slidify::knit2slides
 
 --- .class #id
 
+
 ## Convolutional Neural Networks
 
 * Same size output is also possible (is desirable)
@@ -237,3 +238,76 @@ knit        : slidify::knit2slides
 
 
 --- .class #id
+
+## Keras: Coding the networks
+
+* Keras is a library providing high level functions to define a variety of Neural Networks
+* The computations are still done by a Tensorflow or Theano backend
+* Keras api makes the code writting more intuitive and abstracts away some of the unneccessary details from the user
+* If you are not publishing papers or experimenting with new ways of creating Neural Networks, keras will serve your purpose.
+
+
+--- .class #id
+
+## Keras : API overview
+
+* Keras has a couple of classes that help in defining a Neural Network. Major classes are:
+ * Models: Defines a model container and relevant model methods
+ * Layers: Helps define different types of layers, fully conected, convolutional, pooling and recurrent
+ * Losses: Defines various loss functions: Cross Entropy, Mean squared loss
+ * Optimizers: Defines various optimizers: SGD, Adam etc
+ * Activations: Defines various activations: Relu, Softmax, Sigmoid etc.
+
+* Lets's look at a sample code
+ 
+
+--- .class #id
+
+
+## Keras: Basic API Sample
+
+```{python,echo=T,message=FALSE,eval=FALSE}
+from keras.models import Sequential
+from keras.layers import Dense,Activation
+from keras.optimizers import SGD
+
+## Include a container
+model=Sequential()
+
+## Model Specification
+#Layer 1
+model.Add(Dense(Number_of_neurons,input_shape(n,m)))
+model.Add(Activation('relu'))
+#Layer 2
+model.Add(Dense(Number_of_neurons),input_shape(n,m))
+model.Add(Activation('sigmoid'))
+.....
+.....
+.....
+
+
+```
+
+
+
+
+--- .class #id
+
+## Keras: Basic API Sample
+
+```{python,echo=T,message=F,eval=F}
+....
+....
+#Layer N
+model.Add(Dense(Number_of_neurons),input_shape(n,m))
+model.Add(Activation('softmax'))
+
+#Instantiate an optimizer
+sgd=SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
+model.compile(loss='categorica_crossentropy',optimiser=sgd,metrics=['accuracy'])
+
+# Fit the model
+model.fit(X,y,batch_size=n,epochs=m)
+
+```
+

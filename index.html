@@ -78,7 +78,7 @@
   </hgroup>
   <article data-timings="">
     <ul>
-<li>Typical use case for Neural Networks is in the field of computer vision and NLP</li>
+<li>Typical current use case for Neural Networks is in the field of computer vision and NLP</li>
 <li>Traditional methods and analysis are not going to be replaced by neural networks</li>
 <li>This session will introduce Multi Layer Perceptron Model in the classification setting, aim: to make you self explorers.</li>
 <li>Current state of the art in Neural Networks: Convolutional Neural Networks, Recurrent Neural Networks</li>
@@ -421,8 +421,92 @@
 </slide>
 
 <slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Keras: Coding the networks</h2>
+  </hgroup>
   <article data-timings="">
-    
+    <ul>
+<li>Keras is a library providing high level functions to define a variety of Neural Networks</li>
+<li>The computations are still done by a Tensorflow or Theano backend</li>
+<li>Keras api makes the code writting more intuitive and abstracts away some of the unneccessary details from the user</li>
+<li>If you are not publishing papers or experimenting with new ways of creating Neural Networks, keras will serve your purpose.</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Keras : API overview</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><p>Keras has a couple of classes that help in defining a Neural Network. Major classes are:</p>
+
+<ul>
+<li>Models: Defines a model container and relevant model methods</li>
+<li>Layers: Helps define different types of layers, fully conected, convolutional, pooling and recurrent</li>
+<li>Losses: Defines various loss functions: Cross Entropy, Mean squared loss</li>
+<li>Optimizers: Defines various optimizers: SGD, Adam etc</li>
+<li>Activations: Defines various activations: Relu, Softmax, Sigmoid etc.</li>
+</ul></li>
+<li><p>Lets&#39;s look at a sample code</p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Keras: Basic API Sample</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="python">from keras.models import Sequential
+from keras.layers import Dense,Activation
+from keras.optimizers import SGD
+
+## Include a container
+model=Sequential()
+
+## Model Specification
+#Layer 1
+model.Add(Dense(Number_of_neurons,input_shape(n,m)))
+model.Add(Activation(&#39;relu&#39;))
+#Layer 2
+model.Add(Dense(Number_of_neurons),input_shape(n,m))
+model.Add(Activation(&#39;sigmoid&#39;))
+.....
+.....
+.....
+
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Keras: Basic API Sample</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="python">....
+....
+#Layer N
+model.Add(Dense(Number_of_neurons),input_shape(n,m))
+model.Add(Activation(&#39;softmax&#39;))
+
+#Instantiate an optimizer
+sgd=SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
+model.compile(loss=&#39;categorica_crossentropy&#39;,optimiser=sgd,metrics=[&#39;accuracy&#39;])
+
+# Fit the model
+model.fit(X,y,batch_size=n,epochs=m)
+
+</code></pre>
+
   </article>
   <!-- Presenter Notes -->
 </slide>
@@ -553,8 +637,26 @@
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=21 title='NA'>
+        data-slide=21 title='Keras: Coding the networks'>
          21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title='Keras : API overview'>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title='Keras: Basic API Sample'>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title='Keras: Basic API Sample'>
+         24
       </a>
     </li>
   </ul>
