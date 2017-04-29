@@ -305,7 +305,7 @@ model.Add(Activation('softmax'))
 
 #Instantiate an optimizer
 sgd=SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
-model.compile(loss='categorica_crossentropy',optimiser=sgd,metrics=['accuracy'])
+model.compile(loss='categorical_crossentropy',optimiser=sgd,metrics=['accuracy'])
 
 # Fit the model
 model.fit(X,y,batch_size=n,epochs=m)
