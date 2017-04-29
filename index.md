@@ -73,7 +73,7 @@ knit        : slidify::knit2slides
 
 ## Basic Concepts:
 
-<iframe src="https://onedrive.live.com/embed?cid=93C4DDFD9869A0CF&resid=93C4DDFD9869A0CF%21204&authkey=ACeZ2LCmVx_Q7WA&em=2" width="402" height="346" frameborder="0" scrolling="no"></iframe>
+<iframe width="402" height="346" frameborder="0" scrolling="no" src="https://onedrive.live.com/embed?cid=93C4DDFD9869A0CF&resid=93C4DDFD9869A0CF%21204&authkey=ACeZ2LCmVx_Q7WA&em=2&AllowTyping=True&wdHideGridlines=True&wdHideHeaders=True"></iframe>
 
 
 
