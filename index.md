@@ -71,6 +71,14 @@ knit        : slidify::knit2slides
 
 --- .class #id
 
+## Basic Concepts:
+
+<iframe src="https://onedrive.live.com/embed?cid=93C4DDFD9869A0CF&resid=93C4DDFD9869A0CF%21204&authkey=ACeZ2LCmVx_Q7WA&em=2" width="402" height="346" frameborder="0" scrolling="no"></iframe>
+
+
+
+--- .class #id
+
 ## Gradient Descent: Optimising a convex function
 
 * We have seen that there is always a cost function, to minimize cost, Gradient Descent and its variations are used.
