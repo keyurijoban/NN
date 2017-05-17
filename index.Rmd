@@ -25,6 +25,16 @@ knit        : slidify::knit2slides
  * MLP implementation
  * CNN implementation
 
+
+
+--- .class #id
+## Agenda
+
+3. Mxnet API
+  * Basic API
+  * MLP implementation
+  * CNN implementation
+
 --- .class #id 
 
 ## Neural Networks : Uses
@@ -251,7 +261,7 @@ knit        : slidify::knit2slides
 
 * Keras is a library providing high level functions to define a variety of Neural Networks
 * The computations are still done by a Tensorflow or Theano backend
-* Keras api makes the code writting more intuitive and abstracts away some of the unneccessary details from the user
+* Keras api makes the code writting more intuitive and abstracts away some of the unnecessary details from the user
 * If you are not publishing papers or experimenting with new ways of creating Neural Networks, keras will serve your purpose.
 
 
@@ -261,7 +271,7 @@ knit        : slidify::knit2slides
 
 * Keras has a couple of classes that help in defining a Neural Network. Major classes are:
  * Models: Defines a model container and relevant model methods
- * Layers: Helps define different types of layers, fully conected, convolutional, pooling and recurrent
+ * Layers: Helps define different types of layers, fully connected, convolutional, pooling and recurrent
  * Losses: Defines various loss functions: Cross Entropy, Mean squared loss
  * Optimizers: Defines various optimizers: SGD, Adam etc
  * Activations: Defines various activations: Relu, Softmax, Sigmoid etc.
@@ -318,4 +328,61 @@ model.compile(loss='categorical_crossentropy',optimiser=sgd,metrics=['accuracy']
 model.fit(X,y,batch_size=n,epochs=m)
 
 ```
+
+
+
+--- .class #id
+## mxnet: Coding the networks
+* Mxnet has an R api and currently (May 2017), this is one of the few frameworks that support deep learning in R
+* At an api level mxnet is very similar to Keras, the emphasis is on creating higher level abstractions
+* As of May 2017, mxnet supports CNNs, RNNs and a host of other popular architectures
+
+
+--- class #id
+
+## mxnet: Basic API
+
+```{r,echo=T,message=F,eval=F}
+library(mxnet)
+# symbolically representing data/input layer
+data<-mx.symbol.Variable('data')
+# adding layers
+fc1<-mx.symbol.FullyConnected(data,num_hidden=128)
+# adding activation
+act1<-mx.symbol.Activation(fc1,act_type='relu')
+# adding second hidden layer
+fc2<-mx.symbol.FullyConnected(act1,num_hidden=64)
+# adding activation
+act2<-mx.symbol.Activation(fc2,act_type='tanh')
+
+....
+....
+
+```
+
+
+--- .class #id
+
+## mxnet:Basic API
+```{r, echo=T,message=F,eval=F}
+....
+....
+# adding last layer
+fc_n<-mx.symbol.FullyConnected(act_n-1,num_hidden=20)
+softmax<-mx.symbol.SoftmaxOutput(fc_n,act_type='softmax')
+
+#Training the model
+mx.set.seed(0)
+model <- mx.model.FeedForward.create(softmax, X=train.x, y=train.y,
+                  ctx=devices, num.round=10, array.batch.size=100,
+                  learning.rate=0.07, momentum=0.9,  eval.metric=mx.metric.accuracy,
+                  initializer=mx.init.uniform(0.07),
+                  epoch.end.callback=mx.callback.log.train.metric(100))
+
+
+```
+
+
+
+--- .class #id
 

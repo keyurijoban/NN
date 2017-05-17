@@ -74,6 +74,25 @@
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
+    <h2>Agenda</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Mxnet API
+
+<ul>
+<li>Basic API</li>
+<li>MLP implementation</li>
+<li>CNN implementation</li>
+</ul></li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
     <h2>Neural Networks : Uses</h2>
   </hgroup>
   <article data-timings="">
@@ -439,7 +458,7 @@
     <ul>
 <li>Keras is a library providing high level functions to define a variety of Neural Networks</li>
 <li>The computations are still done by a Tensorflow or Theano backend</li>
-<li>Keras api makes the code writting more intuitive and abstracts away some of the unneccessary details from the user</li>
+<li>Keras api makes the code writting more intuitive and abstracts away some of the unnecessary details from the user</li>
 <li>If you are not publishing papers or experimenting with new ways of creating Neural Networks, keras will serve your purpose.</li>
 </ul>
 
@@ -457,7 +476,7 @@
 
 <ul>
 <li>Models: Defines a model container and relevant model methods</li>
-<li>Layers: Helps define different types of layers, fully conected, convolutional, pooling and recurrent</li>
+<li>Layers: Helps define different types of layers, fully connected, convolutional, pooling and recurrent</li>
 <li>Losses: Defines various loss functions: Cross Entropy, Mean squared loss</li>
 <li>Optimizers: Defines various optimizers: SGD, Adam etc</li>
 <li>Activations: Defines various activations: Relu, Softmax, Sigmoid etc.</li>
@@ -522,6 +541,77 @@ model.fit(X,y,batch_size=n,epochs=m)
   <!-- Presenter Notes -->
 </slide>
 
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>mxnet: Coding the networks</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Mxnet has an R api and currently (May 2017), this is one of the few frameworks that support deep learning in R</li>
+<li>At an api level mxnet is very similar to Keras, the emphasis is on creating higher level abstractions</li>
+<li>As of May 2017, mxnet supports CNNs, RNNs and a host of other popular architectures</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="id" style="background:;">
+  <hgroup>
+    <h2>mxnet: Basic API</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">library(mxnet)
+# symbolically representing data/input layer
+data&lt;-mx.symbol.Variable(&#39;data&#39;)
+# adding layers
+fc1&lt;-mx.symbol.FullyConnected(data,num_hidden=128)
+# adding activation
+act1&lt;-mx.symbol.Activation(fc1,act_type=&#39;relu&#39;)
+# adding second hidden layer
+fc2&lt;-mx.symbol.FullyConnected(act1,num_hidden=64)
+# adding activation
+act2&lt;-mx.symbol.Activation(fc2,act_type=&#39;tanh&#39;)
+
+....
+....
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>mxnet:Basic API</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">....
+....
+# adding last layer
+fc_n&lt;-mx.symbol.FullyConnected(act_n-1,num_hidden=20)
+softmax&lt;-mx.symbol.SoftmaxOutput(fc_n,act_type=&#39;softmax&#39;)
+
+#Training the model
+mx.set.seed(0)
+model &lt;- mx.model.FeedForward.create(softmax, X=train.x, y=train.y,
+                  ctx=devices, num.round=10, array.batch.size=100,
+                  learning.rate=0.07, momentum=0.9,  eval.metric=mx.metric.accuracy,
+                  initializer=mx.init.uniform(0.07),
+                  epoch.end.callback=mx.callback.log.train.metric(100))
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
     <slide class="backdrop"></slide>
   </slides>
   <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
@@ -534,13 +624,13 @@ model.fit(X,y,batch_size=n,epochs=m)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=2 title='Neural Networks : Uses'>
+        data-slide=2 title='Agenda'>
          2
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=3 title='Basic Concepts'>
+        data-slide=3 title='Neural Networks : Uses'>
          3
       </a>
     </li>
@@ -558,13 +648,13 @@ model.fit(X,y,batch_size=n,epochs=m)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=6 title='Basic Concepts:'>
+        data-slide=6 title='Basic Concepts'>
          6
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=7 title='Gradient Descent: Optimising a convex function'>
+        data-slide=7 title='Basic Concepts:'>
          7
       </a>
     </li>
@@ -576,25 +666,25 @@ model.fit(X,y,batch_size=n,epochs=m)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=9 title='Backpropagation:'>
+        data-slide=9 title='Gradient Descent: Optimising a convex function'>
          9
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=10 title='Convolutional Neural Networks'>
+        data-slide=10 title='Backpropagation:'>
          10
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=11 title='Convolutional Neural  Networks'>
+        data-slide=11 title='Convolutional Neural Networks'>
          11
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=12 title='Convolutional Neural Networks'>
+        data-slide=12 title='Convolutional Neural  Networks'>
          12
       </a>
     </li>
@@ -648,25 +738,25 @@ model.fit(X,y,batch_size=n,epochs=m)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=21 title='Convolutional Neural Networks: Transfer Learning'>
+        data-slide=21 title='Convolutional Neural Networks'>
          21
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=22 title='Keras: Coding the networks'>
+        data-slide=22 title='Convolutional Neural Networks: Transfer Learning'>
          22
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=23 title='Keras : API overview'>
+        data-slide=23 title='Keras: Coding the networks'>
          23
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=24 title='Keras: Basic API Sample'>
+        data-slide=24 title='Keras : API overview'>
          24
       </a>
     </li>
@@ -674,6 +764,36 @@ model.fit(X,y,batch_size=n,epochs=m)
       <a href="#" target="_self" rel='tooltip' 
         data-slide=25 title='Keras: Basic API Sample'>
          25
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=26 title='Keras: Basic API Sample'>
+         26
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=27 title='mxnet: Coding the networks'>
+         27
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=28 title='mxnet: Basic API'>
+         28
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=29 title='mxnet:Basic API'>
+         29
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=30 title='NA'>
+         30
       </a>
     </li>
   </ul>
